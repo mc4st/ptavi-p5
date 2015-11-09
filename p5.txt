@@ -18,7 +18,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 
 3. Antes de analizar las tramas, mira las estadísticas generales que aparecen en el menú de Statistics. En el apartado de jerarquía de protocolos (Protocol Hierarchy) se puede ver el porcentaje del tráfico correspondiente al protocolo TCP y UDP.
- ** ¿Cuál de los dos es mayor? ¿Es esto consistente con una aplicación que transmite en tiempo real? UDP(96.23% paquetes) es mayor frente a TCP(2.10% paquetes)
+ ** ¿Cuál de los dos es mayor? ¿Es esto consistente con una aplicación que transmite en tiempo real? UDP(96.23% paquetes) es mayor frente a TCP(2.10% paquetes) ··························································································
 
  ** ¿Qué otros protocolos podemos ver en la jerarquía de protocolos?
 En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
@@ -33,49 +33,49 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 5. Analiza las primeras cuatro tramas de la captura nada más arrancar Ekiga.
- ** ¿Qué servicio es el utilizado en estas tramas?
- ** ¿Cuál es la dirección IP del servidor de nombres del ordenador que ha lanzado Ekiga?
- ** ¿Qué dirección IP (de ekiga.net) devuelve el servicio de nombres?
- ** ¿Por qué se pide también para 35.162.64.86.in-addr.arpa?
+ ** ¿Qué servicio es el utilizado en estas tramas? ekiga.net
+ ** ¿Cuál es la dirección IP del servidor de nombres del ordenador que ha lanzado Ekiga? 80.58.61.250
+ ** ¿Qué dirección IP (de ekiga.net) devuelve el servicio de nombres? 86.64.162.35
+ ** ¿Por qué se pide también para 35.162.64.86.in-addr.arpa? Porque quiere saber el dominio por defecto para esa dirección, eso lo vemos con direccion.in-addr.arpa: type PTR
 
 
 6. A continuación, hay más de una docena de tramas TCP/HTTP.
- ** ¿Podrías decir la URL que se está pidiendo?
- ** ¿Qué user agent (UA) la está pidiendo?
- ** ¿Qué devuelve el servidor?
- ** Si lanzamos el navegador web, por ejemplo, Mozilla Firefox, y vamos a la misma URL, ¿qué recibimos? ¿Qué es, entonces, lo que está respondiendo el servidor?
+ ** ¿Podrías decir la URL que se está pidiendo? http://ekiga.net/ip/
+ ** ¿Qué user agent (UA) la está pidiendo? Ekiga
+ ** ¿Qué devuelve el servidor? 83.36.48.212 (dirección pública)
+ ** Si lanzamos el navegador web, por ejemplo, Mozilla Firefox, y vamos a la misma URL, ¿qué recibimos? ¿Qué es, entonces, lo que está respondiendo el servidor? Recibimos 193.147.49.108. El servidor nos da la dirección ip pública
 
 
-7. Hasta la trama 45 se puede observar una secuencia de tramas del protocolo STUN.
+7. Hasta la trama 45 se puede observar una secuencia de tramas del protocolo STUN. ··············································
  ** ¿Por qué crees que se hace uso de este protocolo en esta captura? Busca en la Wikipedia.
  ** ¿Estamos tras un NAT?
 
 
 8. La trama 46 es la primera trama SIP. En un entorno como el de Internet, lo habitual es desconocer la dirección IP de la otra parte al realizar una llamada. Por eso, todo usuario registra su localización en un servidor Registrar. El Registrar guarda información sobre los usuarios en un servidor de localización que puede ser utilizado para localizar usuarios.
- ** ¿Qué dirección IP tiene el servidor Registrar?
- ** ¿A qué puerto (del servidor Registrar) se envían los paquetes SIP?
- ** ¿Qué método SIP utiliza el UA para registrarse?
- ** Además de REGISTER, ¿qué instrucciones SIP entiende el UA?
+ ** ¿Qué dirección IP tiene el servidor Registrar? 86.64.162.35
+ ** ¿A qué puerto (del servidor Registrar) se envían los paquetes SIP? 5060
+ ** ¿Qué método SIP utiliza el UA para registrarse? REGISTER
+ ** Además de REGISTER, ¿qué instrucciones SIP entiende el UA? INVITE,ACK,OPTIONS,BYE,CANCEL,NOTIFY,REFER,MESSAGE
 
 
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 9. Fijémonos en las tramas siguientes a la número 46:
- ** ¿Se registra con éxito en el primer intento?
- ** ¿Cómo sabemos si el registro se ha realizado correctamente o no?
- ** ¿Podrías identificar las diferencias entre el primer intento y el segundo de registro? (fíjate en el tamaño de los paquetes y mira a qué se debe el cambio)
- ** ¿Cuánto es el valor del tiempo de expiración de la sesión? Indica las unidades.
+ ** ¿Se registra con éxito en el primer intento? No
+ ** ¿Cómo sabemos si el registro se ha realizado correctamente o no? Según la cabecera de la trama "401 Unauthorized"
+ ** ¿Podrías identificar las diferencias entre el primer intento y el segundo de registro? (fíjate en el tamaño de los paquetes y mira a qué se debe el cambio) En el primer intento no le deja efectuar el registro y le pide que lo realice mediante "Digest", en el segundo intento lo realiza mediante este método y le responde un "200 OK"
+ ** ¿Cuánto es el valor del tiempo de expiración de la sesión? Indica las unidades. 3600s
 
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar con el servicio de eco de Ekiga que nos permite comprobar si nos hemos conectado correctamente. El servicio de eco tiene la dirección sip:500@ekiga.net. Veamos el INVITE de cerca.
- ** ¿Puede verse el nombre del que efectúa la llamada, así como su dirección SIP?
- ** ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está?
- ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes?
- ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto?
+ ** ¿Puede verse el nombre del que efectúa la llamada, así como su dirección SIP? Si, Gregorio Robles, sip: grex@ekiga.net
+ ** ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está? Contiene información de propietario, informacion de conexioón, tiempo, media, direccion y atributos. Protocolo: SDP
+ ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes? No, ya que nos pide autenticación de proxy
+ ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto? En que añade el campo "Proxy-Authenrization"
 
 
-11. Una vez conectado, estudia el intercambio de tramas.
+11. Una vez conectado, estudia el intercambio de tramas. ·····································································
  ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
  ** ¿Cuál es el tamaño de paquete de los mismos?
  ** ¿Se utilizan bits de padding?
@@ -86,7 +86,7 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
-12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
+12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP. ·················
  ** ¿Cuántos flujos hay? ¿por qué?
  ** ¿Cuántos paquetes se pierden?
  ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
