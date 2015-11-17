@@ -106,20 +106,20 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
      La dependencia está en la variabilidad de dicho retardo.
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
- ** ¿Cuánto dura la conversación?
- ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
+ ** ¿Cuánto dura la conversación? Obtenemos este valor restando los campos Stop Time - Start Time = 39.22.9683 - 14.426793 = 24.80289
+ ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs? Tenemos dos valores se SSRC, uno para el flujo de audio y otro para el de video. No encontramos ninún CSRC, lo podemos ver en el campo "Contributing Source Identifiers Count = 0"
 
 
 15. Identifica la trama donde se finaliza la conversación.
- ** ¿Qué método SIP se utiliza?
- ** ¿En qué trama(s)?
- ** ¿Por qué crees que se envía varias veces?
+ ** ¿Qué método SIP se utiliza? Uitliza el método Request, "BYE".
+ ** ¿En qué trama(s)? 924,925,927 y 933.
+ ** ¿Por qué crees que se envía varias veces? Se envia varias veces ya que no se recibe una trama con el método 200 OK.
 
 
 16. Finalmente, se cierra la aplicación de VozIP.
- ** ¿Por qué aparece una instrucción SIP del tipo REGISTER?
- ** ¿En qué trama sucede esto?
- ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)?
+ ** ¿Por qué aparece una instrucción SIP del tipo REGISTER? Aparece para dar de baja al usuario (Expires = 0), y que el servidor le borre de la lista.
+ ** ¿En qué trama sucede esto? En la trama 950 y 952.
+ ** ¿En qué se diferencia con la instrucción que se utilizó con anterioridad (al principio de la sesión)? Se diferencia en el valor del campo Expires, al inicio de la sesión tiene un valor de 3600 y al final tiene valor de 0.
 
 
 
