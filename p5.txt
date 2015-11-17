@@ -86,12 +86,15 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
 
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
-12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP. ·················
- ** ¿Cuántos flujos hay? ¿por qué?
- ** ¿Cuántos paquetes se pierden?
- ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
- ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
-
+12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
+ ** ¿Cuántos flujos hay? ¿por qué? Existen dos flujos, ya que se transmiten dos tipos de ficheros distintos, audio y video.
+ ** ¿Cuántos paquetes se pierden? No se pierde ningún paquete.
+ ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta? En ambos flujos tiene un valor de 1290.48 ms aprox. Este valor equivale al retardo de los paquetes.
+ ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad? 
+    En flujo de vídeo:                          En flujo de audio:
+        -> jitter medio: 153.24 ms                  -> jitter medio: 42.50 ms 
+        -> jitter máximo: 183.10 ms                 -> jitter máximo: 119.64 ms
+    No es una conversacion de calidad, ya que los valores jitter no son buenos, tiene demasiada variación y la diferencia de retardos es elevada.
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
  ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
