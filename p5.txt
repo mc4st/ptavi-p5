@@ -18,7 +18,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 
 3. Antes de analizar las tramas, mira las estadísticas generales que aparecen en el menú de Statistics. En el apartado de jerarquía de protocolos (Protocol Hierarchy) se puede ver el porcentaje del tráfico correspondiente al protocolo TCP y UDP.
- ** ¿Cuál de los dos es mayor? ¿Es esto consistente con una aplicación que transmite en tiempo real? UDP(96.23% paquetes) es mayor frente a TCP(2.10% paquetes) ··························································································
+ ** ¿Cuál de los dos es mayor? ¿Es esto consistente con una aplicación que transmite en tiempo real? UDP(96.23% paquetes) es mayor frente a TCP(2.10% paquetes). Sí.
 
  ** ¿Qué otros protocolos podemos ver en la jerarquía de protocolos?
 En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
@@ -71,16 +71,16 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar con el servicio de eco de Ekiga que nos permite comprobar si nos hemos conectado correctamente. El servicio de eco tiene la dirección sip:500@ekiga.net. Veamos el INVITE de cerca.
  ** ¿Puede verse el nombre del que efectúa la llamada, así como su dirección SIP? Si, Gregorio Robles, sip: grex@ekiga.net
  ** ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está? Contiene información de propietario, informacion de conexioón, tiempo, media, direccion y atributos. Protocolo: SDP
- ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes? No, ya que nos pide autenticación de proxy
+ ** ¿Tiene éxito el primer intento? ¿Cómo lo sabes? No, ya que nos pide autenticación de proxy, "407 Proxy Authentication Required"
  ** ¿En qué se diferencia el segundo INVITE más abajo del primero? ¿A qué crees que se debe esto? En que añade el campo "Proxy-Authenrization"
 
 
-11. Una vez conectado, estudia el intercambio de tramas. ·····································································
- ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
- ** ¿Cuál es el tamaño de paquete de los mismos?
- ** ¿Se utilizan bits de padding?
- ** ¿Cuál es la periodicidad de los paquetes que se envían?
- ** ¿Cuántos bits/segundo estamos enviando?
+11. Una vez conectado, estudia el intercambio de tramas.
+ ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos? Se utilizan RTP (para transmisión multimedia a tiempo real) y H-261 (para el video) 
+ ** ¿Cuál es el tamaño de paquete de los mismos? Paquetes RTP -> 214 bytes, Paquetes H-261 -> 1028,1073,1037,1077 bytes
+ ** ¿Se utilizan bits de padding? No. Se observa en el campo Padding: False. 
+ ** ¿Cuál es la periodicidad de los paquetes que se envían? es de 20 microsegundos aprox.
+ ** ¿Cuántos bits/segundo estamos enviando? Enviamos 64000bits/seg
 
 
 
