@@ -97,13 +97,13 @@ En IPv4(TCP -> HTTP e ICMP, UDP -> DNS, STUTN, SIP, RTP, RTCP) y ARP
     No es una conversacion de calidad, ya que los valores jitter no son buenos, tiene demasiada variación y la diferencia de retardos es elevada.
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
- ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
- ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
- ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
- ** ¿A qué se debe el cambio tan brusco del jitter?
- ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
+ ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado? Ambos tienen valor 0.
+ ** ¿Podemos saber si éste es el primer paquete que nos han enviado? Si, ya que el valor que toma el campo Marker.
+ ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál? El paquete al que se hace referencia es el número 247. Apartir de este paquete los valores de jitter seran superiores a 10ms.
+ ** ¿A qué se debe el cambio tan brusco del jitter? Se debe al cambio de retardo, este es muy brusco, lo que hace que cambie el valor de jitter.
+ ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué? Si, porque hay un cambio brusco en el retardo con respecto al paquete anterior.
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
-
+     La dependencia está en la variabilidad de dicho retardo.
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
  ** ¿Cuánto dura la conversación?
