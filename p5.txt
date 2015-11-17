@@ -133,16 +133,21 @@ Captura de una sesión SIP
 Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.net. Tendrás que dar de alta una cuenta en www.ekiga.net con el navegador. Recuerda también que has de comenzar a capturar tramas antes de arrancar Ekiga para ver todo el proceso en el que participa SIP. Para realizar los siguientes ejercicios, deberás crearte una cuenta en ekiga.net y darte de alta la lanzar la aplicación.
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
- ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
+ ** ¿Es necesario el uso de DNS y STUN? ¿Por qué? Si es necesario tanto el uso de DNS como el de STUN, DNS para la asignacion de nombres de dominio IP y STUN para conocer nuestra IP pública.
  ** ¿Son diferentes el registro y la descripción de la sesión?
-
+No, son iguales.
 
 18. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
- ** ¿Cuántos flujos tenemos?
- ** ¿Cuál es su periodicidad?
+ ** ¿Cuántos flujos tenemos? Tenemos dos flujos ambos de audio, ya que es una conversación.
+ ** ¿Cuál es su periodicidad? cada 0.2 segundos
  ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
+ En primer flujo (Port: 30984):                          En segundo flujo (Port: 5062):
+        -> jitter medio: 19.90 ms                            -> jitter medio: 37.01 ms 
+        -> jitter máximo: 19.29 ms                           -> jitter máximo: 48.81 ms
+        -> delta máximo: 4.09 ms                             -> delta máximo: 324.26 ms
  ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
- ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+ Telephony -> RTP -> Show all Streams -> Selecionar un flujo -> Analyze -> Player (Se cierra automaticamente Wireshark, por lo que no llego a reproducirlo)
+ ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net? Servicio de audio
 
 
 
