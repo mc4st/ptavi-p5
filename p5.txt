@@ -157,4 +157,3 @@ No, son iguales.
 [Al terminar la práctica, realiza un push para sincronizar tu repositorio GitHub]
 
 [Recuerda mirar el guión para ver las instrucciones de entrega]
-
