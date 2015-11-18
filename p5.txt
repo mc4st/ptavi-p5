@@ -45,7 +45,11 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 7. Hasta la trama 45 se puede observar una secuencia de tramas del protocolo STUN. 
  ** ¿Por qué crees que se hace uso de este protocolo en esta captura? Busca en la Wikipedia.
-Es un protocolo de red del tipo cliente/servidor que permite a clientes NAT encontrar su dirección IP pública, el tipo de NAT en el que se encuentra y el puerto de Internet asociado con el puerto local a través de NAT. Esta información es usada para configurar una comunicación UDP entre dos hosts que se encuentren tras enrutadores NAT.
+    Protocolo de red del tipo cliente/servidor. Permite a clientes NAT:
+       -> Saber su dirección IP pública
+       -> Tipo de NAT en el que se encuentra.
+       -> Puerto de Internet asociado con el puerto local a través de NAT. 
+    Esta información es usada para configurar una comunicación UDP entre dos hosts que se encuentren tras enrutadores NAT.
  ** ¿Estamos tras un NAT? Si.
 
 
