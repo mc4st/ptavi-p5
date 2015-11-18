@@ -43,9 +43,10 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
  ** Si lanzamos el navegador web, por ejemplo, Mozilla Firefox, y vamos a la misma URL, ¿qué recibimos? ¿Qué es, entonces, lo que está respondiendo el servidor? Recibimos 193.147.49.108. El servidor nos da la dirección ip pública
 
 
-7. Hasta la trama 45 se puede observar una secuencia de tramas del protocolo STUN. ··············································
+7. Hasta la trama 45 se puede observar una secuencia de tramas del protocolo STUN. 
  ** ¿Por qué crees que se hace uso de este protocolo en esta captura? Busca en la Wikipedia.
- ** ¿Estamos tras un NAT?
+Es un protocolo de red del tipo cliente/servidor que permite a clientes NAT encontrar su dirección IP pública, el tipo de NAT en el que se encuentra y el puerto de Internet asociado con el puerto local a través de NAT. Esta información es usada para configurar una comunicación UDP entre dos hosts que se encuentren tras enrutadores NAT.
+ ** ¿Estamos tras un NAT? Si.
 
 
 8. La trama 46 es la primera trama SIP. En un entorno como el de Internet, lo habitual es desconocer la dirección IP de la otra parte al realizar una llamada. Por eso, todo usuario registra su localización en un servidor Registrar. El Registrar guarda información sobre los usuarios en un servidor de localización que puede ser utilizado para localizar usuarios.
@@ -74,7 +75,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 11. Una vez conectado, estudia el intercambio de tramas.
  ** ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos? Se utilizan RTP (para transmisión multimedia a tiempo real) y H-261 (para el video) 
- ** ¿Cuál es el tamaño de paquete de los mismos? Paquetes RTP -> 214 bytes, Paquetes H-261 -> 1028,1073,1037,1077 bytes
+ ** ¿Cuál es el tamaño de paquete de los mismos? Paquetes RTP -> 214 bytes, Paquetes H-261(video) -> 1028,1073,1037,1077 bytes
  ** ¿Se utilizan bits de padding? No. Se observa en el campo Padding: False. 
  ** ¿Cuál es la periodicidad de los paquetes que se envían? es de 20 microsegundos aprox.
  ** ¿Cuántos bits/segundo estamos enviando? Enviamos 64000bits/seg
